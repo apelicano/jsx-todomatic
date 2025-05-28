@@ -3,11 +3,14 @@ import { useState } from "react";
 function Form(props) {
   const [name, setName] = useState('');
 
-  // NOTE: As written, this function has a bug: it doesn't prevent the user
-  // from submitting an empty form. This is left as an exercise for developers
-  // working through MDN's React tutorial.
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (name.trim() === "") {
+      alert("Please enter a valid task."); 
+      return; 
+    }
+
     props.addTask(name);
     setName("");
   }
@@ -30,6 +33,7 @@ function Form(props) {
         className="input input__lg"
         name="text"
         autoComplete="off"
+        placeholder="Enter a task..."
         value={name}
         onChange={handleChange}
       />

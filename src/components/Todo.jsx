@@ -26,6 +26,12 @@ function Todo(props) {
   // working through MDN's React tutorial.
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (newName.trim() === "") {
+      alert("Please enter a valid task.");
+      return;
+    }
+    
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
@@ -41,6 +47,7 @@ function Todo(props) {
           id={props.id}
           className="todo-text"
           type="text"
+          placeholder="Enter new task name..."
           value={newName}
           onChange={handleChange}
           ref={editFieldRef}
